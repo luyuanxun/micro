@@ -1,5 +1,5 @@
-# micro phalcon3.4.3
-phalcon micro 微型应用 rest demo
+# micro
+phalcon3.4.3 微型应用 rest demo
 
 # run
 php -S localhost:80 .htrouter.php
