@@ -12,7 +12,10 @@ class CodeMsg
     {
         return [
             Code::OK => "SUCCESS",
-            Code::NOT_FOUND => "NOT FOUND",
+            Code::UNAUTHORIZED => "未经授权的",
+            Code::FORBIDDEN => "禁止访问",
+            Code::NOT_FOUND => "地址错误",
+            Code::INVALID_TOKEN => "token无效",
             Code::INVALID_PARAMETER => "参数无效",
             Code::USER_LOGIN_ERROR => "账号或密码错误",
         ];

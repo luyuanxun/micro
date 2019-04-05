@@ -1,9 +1,13 @@
 <?php
 
+use App\Common\Code;
 use Phalcon\Di\FactoryDefault;
 use Phalcon\Mvc\Micro;
+use App\Common\CustomException;
+use App\Common\Authorization;
 
-//error_reporting(E_ALL);
+//TODO 关闭
+error_reporting(E_ALL);
 
 define('BASE_PATH', dirname(__DIR__));
 define('APP_PATH', BASE_PATH . '/app');
@@ -53,11 +57,27 @@ try {
     include APP_PATH . '/../vendor/autoload.php';
 
     /**
+     * 校验授权
+     */
+    $app->before(
+        function () use ($app, $config) {
+            $pattern = $app->router->getMatchedRoute()->getCompiledPattern();
+            $method = $app->router->getMatchedRoute()->getHttpMethods();
+            $noAuth = $config->noAuth->$method ?? [];
+            if(!in_array($pattern, (array)$noAuth)){
+                $auth = Authorization::check($app->request->getHeader('Authorization'));
+                $app->setService('auth', $auth);
+            }
+
+        }
+    );
+
+    /**
      * Handle Result
      */
     $app->after(
         function () use ($app) {
-            handleResult(App\Common\Code::OK, '', $app->getReturnedValue() ?? []);
+            handleResult(Code::OK, '', $app->getReturnedValue() ?? []);
         }
     );
 
@@ -66,8 +86,8 @@ try {
      */
     $app->handle();
 
-} catch (\Exception $e) {
-    if ($e instanceof \App\Common\CustomException) {
+} catch (Exception $e) {
+    if ($e instanceof CustomException) {
         handleResult($e->getCode(), $e->getMessage());
     } else {
         echo $e->getMessage() . '<br>';

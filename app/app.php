@@ -1,10 +1,12 @@
 <?php
 /**
  * Local variables
- * @var \Phalcon\Mvc\Micro $app
+ * @var Micro $app
  */
 
+use App\Controllers\AuthController;
 use App\Common\Code;
+use Phalcon\Mvc\Micro;
 use Phalcon\Mvc\Micro\Collection as MicroCollection;
 
 /**
@@ -15,22 +17,12 @@ $app->notFound(function () use ($app) {
 });
 
 /**
- * TestController相关路由
+ * AuthController相关路由
  */
-$test = new MicroCollection();
-$test->setHandler(new \App\Controllers\TestController());
-$test->setPrefix('/test');
-$test->get('/', 'index');
-$test->get('/error', 'error');
-$app->mount($test);
-
-
-/**
- * UserController相关路由
- */
-$test = new MicroCollection();
-$test->setHandler(new \App\Controllers\UserController());
-$test->setPrefix('/user');
-$test->post('/login', 'login');
-$app->mount($test);
+$auth = new MicroCollection();
+$auth->setHandler(new AuthController());
+$auth->setPrefix('/auth');
+$auth->post('/token', 'getToken');
+$auth->get('/info', 'getInfo');
+$app->mount($auth);
 

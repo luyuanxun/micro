@@ -7,15 +7,17 @@ use App\Services\UserService;
 class UserController extends BaseController
 {
     /**
-     * 登录
-     * @return string
-     * @throws \App\Common\CustomException
+     * @var UserService
      */
-    public function login()
+    public $userService;
+
+    /**
+     * 初始化
+     */
+    public function onConstruct()
     {
-        $name = $this->request->getPost('name');
-        $password = $this->request->getPost('password');
-        return UserService::login($name, $password);
+        $this->userService = new UserService();
     }
+
 }
 

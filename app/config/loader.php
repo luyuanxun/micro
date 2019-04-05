@@ -1,18 +1,24 @@
 <?php
 
+use Phalcon\Loader;
+use Phalcon\Di;
+
 /**
  * Registering an autoloader
  */
-$loader = new \Phalcon\Loader();
+$loader = new Loader();
+$config = $config ?? Di::getDefault()->getConfig();
 
-// Register some namespaces
+/**
+ * Register some namespaces
+ */
 $loader->registerNamespaces(
-    [
-        'App\Common' => $config->application->commonDir,
+    array(
         'App\Controllers' => $config->application->controllersDir,
         'App\Models' => $config->application->modelsDir,
         'App\Services' => $config->application->servicesDir,
-    ]
+        'App\Common' => $config->application->commonDir,
+    )
 );
 
 $loader->register();
