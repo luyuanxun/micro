@@ -1,5 +1,7 @@
 <?php
 
+use Phalcon\Crypt;
+use Phalcon\Db\Adapter\Pdo\Mysql as MysqlPdo;
 /**
  * Shared configuration service
  */
@@ -9,26 +11,34 @@ $di->setShared('config', function () {
 
 
 /**
- * Database connection is created based in the parameters defined in the configuration file
+ * dbMaster
  */
-$di->setShared('db', function () {
-    $config = $this->getConfig();
-
-    $class = 'Phalcon\Db\Adapter\Pdo\\' . $config->database->adapter;
-    $params = [
-        'host' => $config->database->host,
-        'username' => $config->database->username,
-        'password' => $config->database->password,
-        'dbname' => $config->database->dbname,
-        'charset' => $config->database->charset
-    ];
-
-    if ($config->database->adapter == 'Postgresql') {
-        unset($params['charset']);
-    }
-
-    $connection = new $class($params);
-
-    return $connection;
+$di->setShared('dbMaster', function () {
+    $db = $this->getConfig()->db->master;
+    return new MysqlPdo(
+        [
+            'host' => $db->host,
+            'username' => $db->username,
+            'password' => $db->password,
+            'dbname' => $db->dbname,
+            'charset' => $db->charset
+        ]
+    );
 });
 
+
+/**
+ * dbSlave
+ */
+$di->setShared('dbSlave', function () {
+    $db = $this->getConfig()->db->slave;
+    return new MysqlPdo(
+        [
+            'host' => $db->host,
+            'username' => $db->username,
+            'password' => $db->password,
+            'dbname' => $db->dbname,
+            'charset' => $db->charset
+        ]
+    );
+});

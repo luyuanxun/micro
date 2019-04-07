@@ -7,15 +7,21 @@ defined('BASE_PATH') || define('BASE_PATH', getenv('BASE_PATH') ?: realpath(dirn
 defined('APP_PATH') || define('APP_PATH', BASE_PATH . '/app');
 
 return new Phalcon\Config([
+    /**
+     * TODO 删除database配置，此配置仅供 phalcon 生成model用
+     */
     'database' => [
-        'adapter' => 'Mysql',
-        'host' => 'localhost',
+        'adapter'     => 'Mysql',
+        'host' => '127.0.0.1',
         'username' => 'root',
-        'password' => 'root',
+        'password' => '123456',
         'dbname' => 'phalcon',
-        'charset' => 'utf8',
+        'charset' => 'utf8mb4',
     ],
 
+    /**
+     * 对应目录配置
+     */
     'application' => [
         'controllersDir' => APP_PATH . '/controllers/',
         'modelsDir' => APP_PATH . '/models/',
@@ -25,15 +31,46 @@ return new Phalcon\Config([
         'baseUri' => '/micro/',
     ],
 
-    'cryptKey' => 'crypt-key',//加密密钥，请自行修改
-    'noAuth' => [               //免授权路由
+    /**
+     * 数据库配置
+     */
+    'db' => [
+        'master' => [
+            'host' => '127.0.0.1',
+            'username' => 'root',
+            'password' => '123456',
+            'dbname' => 'phalcon',
+            'charset' => 'utf8mb4',
+        ],
+        'slave' => [
+            'host' => '127.0.0.1',
+            'username' => 'root',
+            'password' => '123456',
+            'dbname' => 'phalcon',
+            'charset' => 'utf8mb4',
+        ]
+    ],
+
+    /**
+     * 加密密钥，请自行修改
+     */
+    'cryptKey' => 'OAVmCOfnAls9NPkD',
+
+    /**
+     * 免授权路由设置
+     */
+    'noAuth' => [
         'POST' => [
             '/auth/token',
         ],
         //GET PATCH DELETE HEAD...请自行添加
     ],
+
+    /**
+     * 免授权路由设置
+     */
     'jwt' => [
         'key' => 'jwt-example-key',//请自行修改
-        'expire' => 7200,//有效期两小时
+        'expire' => 72000,//有效期两小时
     ],
 ]);

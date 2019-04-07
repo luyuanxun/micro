@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Common;
-use \Exception;
+use Phalcon\Exception;
 
 /**
  * 自定义异常

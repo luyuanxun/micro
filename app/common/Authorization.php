@@ -12,17 +12,17 @@ class Authorization
 {
     /**
      * 创建token
-     * @param $jti
+     * @param $id
      * @return array
      */
-    public static function createToken($jti)
+    public static function createToken($id)
     {
         $time = time();
         $expireTime = $time + Di::getDefault()->getConfig()->jwt->expire;
         $data = array(
             'iat' => $time,  //创建时间
             'exp' => $expireTime,//有效时间
-            'jti' => $jti
+            'id' => $id
         );
 
         $token = JWT::encode($data, Di::getDefault()->getConfig()->jwt->key);

@@ -6,6 +6,7 @@ use App\Common\Authorization;
 use App\Common\Code;
 use App\Common\CustomValidation;
 use App\Common\CustomException;
+use App\Models\User;
 use Phalcon\Di;
 
 class AuthController extends BaseController
@@ -18,21 +19,25 @@ class AuthController extends BaseController
     public function getToken()
     {
         $rules = [
-            'name' => 'required|alphaNum',
+            'username' => 'required|alphaNum',
             'password' => 'required|alphaNum|strLen:6,32'
         ];
 
-        $msg = [
-            'name.required' => "姓名不能为空"
-        ];
+        $params = CustomValidation::validate($this->request->getPost(), $rules);
+        $user = User::findFirst([
+            'columns' => 'id, password',
+            'username = ?0',
+            'bind' => [
+                $params['username']
+            ]
+        ])->toArray();
 
-        $params = CustomValidation::validate($this->request->getPost(), $rules, $msg);
-        if (!($params['name'] == 'demo' && $params['password'] == '123456')) {
-            error_exit(Code::USER_LOGIN_ERROR);
+        if (!($user && $this->security->checkHash($params['password'], $user['password']))) {
+            $this->security->hash(rand());
+            error_exit(Code::LOGIN_ERROR);
         }
 
-        $userId = 199;//TODO 通过数据库获取userId
-        return Authorization::createToken($userId);
+        return Authorization::createToken($user['id']);
     }
 
     /**
@@ -41,15 +46,17 @@ class AuthController extends BaseController
     public function refresh()
     {
         $auth = Di::getDefault()->getService('auth')->getDefinition();
-        return Authorization::createToken($auth['jti']);
+        return Authorization::createToken($auth['id']);
     }
 
     /**
-     * 获取当前token的用户信息
+     * 获取当前token的用户信息(需要什么信息自行在UserService定义返回获取)
+     * @return array
+     * @throws CustomException
      */
     public function getInfo()
     {
-        return Di::getDefault()->getService('auth')->getDefinition();
+        return $this->getUserId();
     }
 }
 
