@@ -33,7 +33,7 @@ class UserController extends BaseController
             'pageSize' => 'required|digit|between:1',
         ];
 
-        $params = CustomValidation::validate($this->request->get(), $rules);
+        $params = CustomValidation::validate($this->getParams(), $rules);
         return $this->userService->getList($params);
     }
 
@@ -48,7 +48,7 @@ class UserController extends BaseController
             'id' => 'required|strLen:24',
         ];
 
-        $params = CustomValidation::validate($this->request->get(), $rules);
+        $params = CustomValidation::validate($this->getParams(), $rules);
         return $this->userService->getInfo($params);
     }
 
@@ -63,7 +63,7 @@ class UserController extends BaseController
             'password' => 'required|strLen:6,32'
         ];
 
-        $params = CustomValidation::validate($this->request->getPost(), $rules);
+        $params = CustomValidation::validate($this->getParams(), $rules);
         $params['password'] = $this->security->hash($params['password']);
         $this->userService->create($params);
     }
@@ -80,7 +80,7 @@ class UserController extends BaseController
             'password' => 'required|strLen:6,32'
         ];
 
-        $params = CustomValidation::validate($this->request->getPut(), $rules);
+        $params = CustomValidation::validate($this->getParams(), $rules);
         $params['password'] = $this->security->hash($params['password']);
         $this->userService->update($params);
     }
@@ -95,7 +95,7 @@ class UserController extends BaseController
             'id' => 'required|strLen:24',
         ];
 
-        $params = CustomValidation::validate($this->request->get(), $rules);
+        $params = CustomValidation::validate($this->getParams(), $rules);
         $this->userService->delete($params);
     }
 }

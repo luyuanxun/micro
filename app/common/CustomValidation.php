@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Common;
 
 use Phalcon\Crypt\Mismatch;
@@ -29,7 +28,6 @@ use Phalcon\Validation\Validator\Uniqueness as UniquenessValidator;
  */
 class CustomValidation
 {
-
     /**
      * 检验参数
      * @param array $params 需校验的参数
@@ -61,7 +59,6 @@ class CustomValidation
                     continue;
                 }
             }
-
 
             foreach ($fieldRules as $fieldRule) {
                 $arr = explode(':', $fieldRule);
@@ -199,11 +196,9 @@ class CustomValidation
                         ]));
 
                         break;
-
                 }
             }
         }
-
 
         /**
          * 参数校验
