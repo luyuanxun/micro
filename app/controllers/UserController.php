@@ -64,7 +64,6 @@ class UserController extends BaseController
         ];
 
         $params = CustomValidation::validate($this->getParams(), $rules);
-        $params['password'] = $this->security->hash($params['password']);
         $this->userService->create($params);
     }
 
@@ -81,7 +80,6 @@ class UserController extends BaseController
         ];
 
         $params = CustomValidation::validate($this->getParams(), $rules);
-        $params['password'] = $this->security->hash($params['password']);
         $this->userService->update($params);
     }
 

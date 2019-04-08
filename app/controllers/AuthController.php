@@ -6,8 +6,6 @@ use App\Common\Authorization;
 use App\Common\Code;
 use App\Common\CustomValidation;
 use App\Common\CustomException;
-use App\Models\User;
-use Phalcon\Di;
 
 class AuthController extends BaseController
 {
@@ -19,44 +17,44 @@ class AuthController extends BaseController
     public function getToken()
     {
         $rules = [
-            'username' => 'required|alphaNum',
+            'name' => 'required|alphaNum',
             'password' => 'required|alphaNum|strLen:6,32'
         ];
 
-        $params = CustomValidation::validate($this->request->getPost(), $rules);
-        $user = User::findFirst([
-            'columns' => 'id, password',
-            'username = ?0',
-            'bind' => [
-                $params['username']
-            ]
-        ])->toArray();
+        $params = CustomValidation::validate($this->getParams(), $rules);
 
-        if (!($user && $this->security->checkHash($params['password'], $user['password']))) {
+        /**
+         * TODO 根据个人需求处理登录
+         */
+        $password = $this->security->hash("123456");
+        if (!($params['name'] === 'test' && $this->security->checkHash($params['password'], $password))) {
             $this->security->hash(rand());
             error_exit(Code::LOGIN_ERROR);
         }
 
-        return Authorization::createToken($user['id']);
+        $userId = 100;
+        return Authorization::createToken($userId);
     }
 
     /**
-     * 刷新token
+     * 刷新token()
+     * @return array
+     * @throws CustomException
      */
     public function refresh()
     {
-        $auth = Di::getDefault()->getService('auth')->getDefinition();
+        $auth = Authorization::analyzeToken();
         return Authorization::createToken($auth['id']);
     }
 
     /**
-     * 获取当前token的用户信息(需要什么信息自行在UserService定义返回获取)
+     * 获取当前token的用户信息
      * @return array
      * @throws CustomException
      */
     public function getInfo()
     {
-        return $this->getUserId();
+        return Authorization::analyzeToken();
     }
 }
 

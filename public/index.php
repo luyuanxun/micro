@@ -25,21 +25,28 @@ try {
     $di = new FactoryDefault();
 
     /**
+     * Injecting Configuration Dependency
+     */
+    $di->set(
+        'config',
+        function () {
+            return include APP_PATH . "/config/config.php";
+        }
+    );
+
+    $config = $di->get('config');
+
+    /**
      * Include Services
      */
     include APP_PATH . '/config/services.php';
-
-    /**
-     * Get config service for use in inline setup below
-     */
-    $config = $di->getConfig();
 
     /**
      * Crypt：Set a global encryption key
      */
     $di->set(
         'crypt',
-        function () use ($config){
+        function () use ($config) {
             $crypt = new Crypt();
             $crypt->setKey($config->cryptKey);
             return $crypt;
@@ -94,8 +101,7 @@ try {
             $method = $app->router->getMatchedRoute()->getHttpMethods();
             $noAuth = $config->noAuth->$method ?? [];
             if (!in_array($pattern, (array)$noAuth)) {
-                $auth = Authorization::check($app->request->getHeader('Authorization'));
-                $app->setService('auth', $auth);
+                Authorization::analyzeToken();
             }
         }
     );
@@ -127,6 +133,11 @@ try {
     if ($e instanceof CustomException) {
         $code = $e->getCode();
     }
+    /*else{
+        //调试时，查看非自定义错误信息
+        var_dump($e->getMessage(), $e->getTraceAsString());
+        exit();
+    }*/
 
     handleResult($code, $e->getMessage());
 }

@@ -70,7 +70,7 @@ return new Phalcon\Config([
      * 免授权路由设置
      */
     'jwt' => [
-        'key' => 'jwt-example-key',//请自行修改
+        'key' => 'OAVmCOfnAls9NPkD',//请自行修改
         'expire' => 72000,//有效期两小时
     ],
 ]);

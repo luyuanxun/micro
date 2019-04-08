@@ -1,12 +1,11 @@
 <?php
 
-
 namespace App\Common;
-
 
 use Exception;
 use Firebase\JWT\JWT;
 use Phalcon\Di;
+use Phalcon\Http\Request;
 
 class Authorization
 {
@@ -17,37 +16,39 @@ class Authorization
      */
     public static function createToken($id)
     {
+        $config = Di::getDefault()->get('config');
         $time = time();
-        $expireTime = $time + Di::getDefault()->getConfig()->jwt->expire;
+        $expireTime = $time + $config->jwt->expire;
         $data = array(
             'iat' => $time,  //创建时间
             'exp' => $expireTime,//有效时间
             'id' => $id
         );
 
-        $token = JWT::encode($data, Di::getDefault()->getConfig()->jwt->key);
+        $token = JWT::encode($data, $config->jwt->key);
         return compact('expireTime', 'token');
     }
 
     /**
      * 解析token
-     * @param $auth
      * @return array
      * @throws CustomException
      */
-    public static function check($auth)
+    public static function analyzeToken()
     {
-        $auth = explode(' ', $auth);
+        $request = new Request();
+        $auth = explode(' ', $request->getHeader('Authorization'));
         if (count($auth) !== 2 || $auth[0] !== 'Bearer') {
             error_exit(Code::INVALID_TOKEN);
         }
 
         try {
-            $ret = JWT::decode($auth[1], Di::getDefault()->getConfig()->jwt->key, array('HS256'));
-            return (array)$ret;
+            $jwtKey = Di::getDefault()->get('config')->jwt->key;
+            $ret = (array)JWT::decode($auth[1], $jwtKey, array('HS256'));
         } catch (Exception $e) {
             error_exit(Code::FORBIDDEN, $e->getMessage());
         }
 
+        return $ret ?? [];
     }
 }

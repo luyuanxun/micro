@@ -1,27 +1,18 @@
 <?php
 
-use Phalcon\Crypt;
 use Phalcon\Db\Adapter\Pdo\Mysql as MysqlPdo;
-/**
- * Shared configuration service
- */
-$di->setShared('config', function () {
-    return include APP_PATH . "/config/config.php";
-});
-
 
 /**
  * dbMaster
  */
-$di->setShared('dbMaster', function () {
-    $db = $this->getConfig()->db->master;
+$di->setShared('dbMaster', function () use ($config) {
     return new MysqlPdo(
         [
-            'host' => $db->host,
-            'username' => $db->username,
-            'password' => $db->password,
-            'dbname' => $db->dbname,
-            'charset' => $db->charset
+            'host' => $config->db->master->host,
+            'username' => $config->db->master->username,
+            'password' => $config->db->master->password,
+            'dbname' => $config->db->master->dbname,
+            'charset' => $config->db->master->charset
         ]
     );
 });
@@ -30,15 +21,14 @@ $di->setShared('dbMaster', function () {
 /**
  * dbSlave
  */
-$di->setShared('dbSlave', function () {
-    $db = $this->getConfig()->db->slave;
+$di->setShared('dbSlave', function () use ($config) {
     return new MysqlPdo(
         [
-            'host' => $db->host,
-            'username' => $db->username,
-            'password' => $db->password,
-            'dbname' => $db->dbname,
-            'charset' => $db->charset
+            'host' => $config->db->slave->host,
+            'username' => $config->db->slave->username,
+            'password' => $config->db->slave->password,
+            'dbname' => $config->db->slave->dbname,
+            'charset' => $config->db->slave->charset
         ]
     );
 });

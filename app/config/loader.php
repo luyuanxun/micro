@@ -1,13 +1,11 @@
 <?php
 
 use Phalcon\Loader;
-use Phalcon\Di;
 
 /**
  * Registering an autoloader
  */
 $loader = new Loader();
-$config = $config ?? Di::getDefault()->getConfig();
 
 /**
  * Register some namespaces
