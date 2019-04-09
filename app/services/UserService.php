@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Common\Code;
 use App\Common\Constant;
-use App\Common\CustomException;
+use Luyuanxun\Micro\Tools\CustomException;
 use App\Models\User;
 
 /**

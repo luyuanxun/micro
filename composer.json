@@ -1,5 +1,12 @@
 {
     "require": {
-        "firebase/php-jwt": "^5.0"
-    }
+        "php": ">=7.1.3",
+        "luyuanxun/micro-tools": "dev-master"
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/luyuanxun/micro-tools.git"
+        }
+    ]
 }

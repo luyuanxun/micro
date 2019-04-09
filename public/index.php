@@ -5,8 +5,8 @@ use App\Common\CodeMsg;
 use Phalcon\Crypt;
 use Phalcon\Di\FactoryDefault;
 use Phalcon\Mvc\Micro;
-use App\Common\CustomException;
-use App\Common\Authorization;
+use Luyuanxun\Micro\Tools\CustomException;
+use Luyuanxun\Micro\Tools\Authorization;
 use Phalcon\Mvc\Router;
 
 //TODO 关闭

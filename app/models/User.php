@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Common\Code;
-use App\Common\CustomException;
+use Luyuanxun\Micro\Tools\CustomException;
 use Phalcon\Mvc\Model;
 
 class User extends Base

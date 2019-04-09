@@ -2,10 +2,10 @@
 
 namespace App\Controllers;
 
-use App\Common\Authorization;
 use App\Common\Code;
-use App\Common\CustomValidation;
-use App\Common\CustomException;
+use Luyuanxun\Micro\Tools\Authorization;
+use Luyuanxun\Micro\Tools\CustomValidation;
+use Luyuanxun\Micro\Tools\CustomException;
 
 class AuthController extends BaseController
 {

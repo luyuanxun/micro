@@ -2,8 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Common\CustomValidation;
-use App\Common\CustomException;
+use Luyuanxun\Micro\Tools\CustomValidation;
+use Luyuanxun\Micro\Tools\CustomException;
 use App\Services\UserService;
 
 class UserController extends BaseController

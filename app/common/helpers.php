@@ -1,7 +1,7 @@
 <?php
 
 use App\Common\CodeMsg;
-use App\Common\CustomException;
+use Luyuanxun\Micro\Tools\CustomException;
 use Phalcon\Crypt;
 
 if (!function_exists('error_exit')) {
@@ -66,7 +66,7 @@ if (!function_exists('handleCrypt')) {
                 handleCryptBase64($crypt, $v, $whiteList);
             } else {
                 if (in_array($k, $whiteList)) {
-                    $v = $crypt->encryptBase64(strval($v));
+                    $v = urlencode($crypt->encryptBase64(strval($v)));
                 }
             }
         }
