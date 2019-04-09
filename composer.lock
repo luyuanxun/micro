@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e59dc2bce1bdefd29d39026fb3aefefb",
+    "content-hash": "0c978992c8432c1d810f5c4f97aa7fe1",
     "packages": [
         {
             "name": "firebase/php-jwt",
@@ -59,12 +59,48 @@
             "time": "2017-06-27T22:17:23+00:00"
         },
         {
+            "name": "luyuanxun/micro-scaffold",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/luyuanxun/micro-scaffold.git",
+                "reference": "91718e7203b9debde0aad7d70906f8247139b633"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/luyuanxun/micro-scaffold/zipball/91718e7203b9debde0aad7d70906f8247139b633",
+                "reference": "91718e7203b9debde0aad7d70906f8247139b633",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Luyuanxun\\Micro\\Scaffold\\": "src"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "phalcon micro scaffold",
+            "support": {
+                "source": "https://github.com/luyuanxun/micro-scaffold/tree/master",
+                "issues": "https://github.com/luyuanxun/micro-scaffold/issues"
+            },
+            "time": "2019-04-09T09:21:13+00:00"
+        },
+        {
             "name": "luyuanxun/micro-tools",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/luyuanxun/micro-tools.git",
                 "reference": "62465bc81361933262601fd45bc0da80890f1e82"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/luyuanxun/micro-tools/zipball/62465bc81361933262601fd45bc0da80890f1e82",
+                "reference": "62465bc81361933262601fd45bc0da80890f1e82",
+                "shasum": ""
             },
             "require": {
                 "firebase/php-jwt": "^5.0"
@@ -79,6 +115,10 @@
                 "MIT"
             ],
             "description": "phalcon micro tool",
+            "support": {
+                "source": "https://github.com/luyuanxun/micro-tools/tree/master",
+                "issues": "https://github.com/luyuanxun/micro-tools/issues"
+            },
             "time": "2019-04-09T06:24:26+00:00"
         }
     ],
@@ -86,7 +126,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "luyuanxun/micro-tools": 20
+        "luyuanxun/micro-tools": 20,
+        "luyuanxun/micro-scaffold": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

@@ -76,11 +76,6 @@ try {
     include APP_PATH . '/app.php';
 
     /**
-     * Include Helper
-     */
-    include APP_PATH . '/common/helpers.php';
-
-    /**
      * Include Vendor
      */
     include APP_PATH . '/../vendor/autoload.php';
