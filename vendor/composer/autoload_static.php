@@ -29,8 +29,7 @@ class ComposerStaticInitfa1e476d65127c80fe55b09440235b09
         ),
         'Luyuanxun\\Micro\\Scaffold\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src',
-            1 => __DIR__ . '/..' . '/luyuanxun/micro-scaffold/src',
+            0 => __DIR__ . '/..' . '/luyuanxun/micro-scaffold/src',
         ),
         'Firebase\\JWT\\' => 
         array (

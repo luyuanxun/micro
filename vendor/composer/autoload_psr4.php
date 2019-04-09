@@ -7,6 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Luyuanxun\\Micro\\Tools\\' => array($vendorDir . '/luyuanxun/micro-tools/src'),
-    'Luyuanxun\\Micro\\Scaffold\\' => array($baseDir . '/src', $vendorDir . '/luyuanxun/micro-scaffold/src'),
+    'Luyuanxun\\Micro\\Scaffold\\' => array($vendorDir . '/luyuanxun/micro-scaffold/src'),
     'Firebase\\JWT\\' => array($vendorDir . '/firebase/php-jwt/src'),
 );
