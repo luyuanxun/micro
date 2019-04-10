@@ -45,11 +45,11 @@ include APP_PATH . '/../vendor/autoload.php';
 $console = new ConsoleApp($di);
 
 if (count($argv) < 4) {
-    die('Error：command does not exist' . PHP_EOL);
+    die('提示：命令错误');
 }
 
 if ($argv[1] !== 'scaffold' || !in_array($argv[2], ['crud', 'controller', 'model'])) {
-    die('Error：command ' . $argv[1] . ' ' . $argv[2] . ' does not exist' . PHP_EOL);
+    die('提示：命令 run ' . $argv[1] . ' ' . $argv[2] . ' 错误');
 }
 
 /**
@@ -59,6 +59,7 @@ $arguments = [
     'task' => "Luyuanxun\\Micro\\Scaffold\\Rest",
     'action' => $argv[2],
     'params' => [
+        'conn' => $di->getShared('dbSlave'),
         'force' => false
     ]
 ];
@@ -74,7 +75,7 @@ foreach ($argv as $arg) {
 }
 
 if (empty($arguments['params']['table'])) {
-    die('Error：table is invalid' . PHP_EOL);
+    die('提示：没有设置数据表参数');
 }
 
 try {

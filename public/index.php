@@ -83,7 +83,7 @@ try {
     /**
      * 设置返回需要加密的字段，默认对所有返回的id加密
      * 注：可在对应控制器的方法中修改需要加密的字段：
-     * $this->di->getService('encryptFields')->setDefinition(['username']);
+     * $this->di->getService('encryptFields')->setDefinition(['id']);
      */
     $app->setService('encryptFields', ['id']);
 
