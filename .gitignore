@@ -1,3 +1,4 @@
 .idea
 .phalcon
 .DS_Store
+vendor
