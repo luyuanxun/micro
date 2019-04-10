@@ -1,4 +1,4 @@
-.idea
-.phalcon
+.idea/
+.phalcon/
 .DS_Store
-vendor
+vendor/
