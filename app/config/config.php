@@ -8,18 +8,6 @@ defined('APP_PATH') || define('APP_PATH', BASE_PATH . '/app');
 
 return new Phalcon\Config([
     /**
-     * TODO 删除database配置，此配置仅供 phalcon 生成model用
-     */
-    'database' => [
-        'adapter'     => 'Mysql',
-        'host' => '127.0.0.1',
-        'username' => 'root',
-        'password' => '123456',
-        'dbname' => 'phalcon',
-        'charset' => 'utf8mb4',
-    ],
-
-    /**
      * 对应目录配置
      */
     'application' => [
