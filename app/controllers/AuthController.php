@@ -3,9 +3,9 @@
 namespace App\Controllers;
 
 use App\Common\Code;
-use Luyuanxun\Micro\Tools\Authorization;
-use Luyuanxun\Micro\Tools\CustomValidation;
-use Luyuanxun\Micro\Tools\CustomException;
+use Lyx\Micro\Tools\Authorization;
+use Lyx\Micro\Tools\CustomValidation;
+use Lyx\Micro\Tools\CustomException;
 
 class AuthController extends BaseController
 {
@@ -24,7 +24,7 @@ class AuthController extends BaseController
         $params = CustomValidation::validate($this->getParams(), $rules);
 
         /**
-         * TODO 根据个人需求处理登录
+         * TODO 根据个人情况处理登录
          */
         $password = $this->security->hash("123456");
         if (!($params['name'] === 'test' && $this->security->checkHash($params['password'], $password))) {

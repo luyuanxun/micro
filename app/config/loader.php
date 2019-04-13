@@ -15,6 +15,7 @@ $loader->registerNamespaces(
         'App\Controllers' => $config->application->controllersDir,
         'App\Models' => $config->application->modelsDir,
         'App\Services' => $config->application->servicesDir,
+        'App\Tasks' => $config->application->tasksDir,
         'App\Common' => $config->application->commonDir,
     )
 );

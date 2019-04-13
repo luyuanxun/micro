@@ -3,7 +3,11 @@
 
 namespace App\Common;
 
-
+/**
+ * 常量配置
+ * Class Constant
+ * @package App\Common
+ */
 class Constant
 {
     /**

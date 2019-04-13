@@ -1,12 +1,11 @@
 <?php
-/*
- * Modified: prepend directory path of current file, because of this file own different ENV under between Apache and command line.
- * NOTE: please remove this comment.
- */
-defined('BASE_PATH') || define('BASE_PATH', getenv('BASE_PATH') ?: realpath(dirname(__FILE__) . '/../..'));
-defined('APP_PATH') || define('APP_PATH', BASE_PATH . '/app');
 
 return new Phalcon\Config([
+    /**
+     * 配置环境：dev test prod
+     */
+    'env' => 'dev',
+
     /**
      * 对应目录配置
      */
@@ -15,6 +14,7 @@ return new Phalcon\Config([
         'modelsDir' => APP_PATH . '/models/',
         'migrationsDir' => APP_PATH . '/migrations/',
         'servicesDir' => APP_PATH . '/services/',
+        'tasksDir' => APP_PATH . '/tasks/',
         'commonDir' => APP_PATH . '/common/',
         'baseUri' => '/micro/',
     ],
@@ -55,7 +55,7 @@ return new Phalcon\Config([
     ],
 
     /**
-     * 免授权路由设置
+     * jwt秘钥配置
      */
     'jwt' => [
         'key' => 'OAVmCOfnAls9NPkD',//请自行修改

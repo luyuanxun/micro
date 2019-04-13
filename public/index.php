@@ -5,8 +5,8 @@ use App\Common\CodeMsg;
 use Phalcon\Crypt;
 use Phalcon\Di\FactoryDefault;
 use Phalcon\Mvc\Micro;
-use Luyuanxun\Micro\Tools\CustomException;
-use Luyuanxun\Micro\Tools\Authorization;
+use Lyx\Micro\Tools\CustomException;
+use Lyx\Micro\Tools\Authorization;
 use Phalcon\Mvc\Router;
 
 //TODO 关闭
@@ -128,11 +128,11 @@ try {
     if ($e instanceof CustomException) {
         $code = $e->getCode();
     }
-    /*else{
+    else{
         //调试时，查看非自定义错误信息
         var_dump($e->getMessage(), $e->getTraceAsString());
         exit();
-    }*/
+    }
 
     handleResult($code, $e->getMessage());
 }

@@ -8,7 +8,7 @@ define('APP_PATH', BASE_PATH . '/app');
 
 /**
  * The FactoryDefault Dependency Injector automatically registers the services that
- * provide a full stack framework. These default services can be overidden with custom ones.
+ * provide a full stack framework. These default services can be Over covered with custom ones.
  */
 $di = new CliDi();
 
@@ -44,38 +44,23 @@ include APP_PATH . '/../vendor/autoload.php';
  */
 $console = new ConsoleApp($di);
 
-if (count($argv) < 4) {
-    die('提示：命令错误');
+if (count($argv) < 3) {
+    die('提示：命令错误' . PHP_EOL);
 }
 
-if ($argv[1] !== 'scaffold' || !in_array($argv[2], ['crud', 'controller', 'model'])) {
-    die('提示：命令 run ' . $argv[1] . ' ' . $argv[2] . ' 错误');
-}
+$arguments = [];
+foreach ($argv as $k => $arg) {
+    if ($k === 1) {
+        if ($arg === 'scaffold' && $config->env !== 'dev') {
+            die('提示：非开发环境禁止使用脚手架！' . PHP_EOL);
+        }
 
-/**
- * Process the console arguments
- */
-$arguments = [
-    'task' => "Luyuanxun\\Micro\\Scaffold\\Rest",
-    'action' => $argv[2],
-    'params' => [
-        'conn' => $di->getShared('dbSlave'),
-        'force' => false
-    ]
-];
-
-foreach ($argv as $arg) {
-    if (strpos($arg, '--table=') !== false) {
-        $arguments['params']['table'] = substr($arg, 8);
+        $arguments['task'] = 'App\Tasks\\' . $arg;
+    } elseif ($k === 2) {
+        $arguments['action'] = $arg;
+    } elseif ($k >= 3) {
+        $arguments['params'][] = $arg;
     }
-
-    if ($arg === '--force') {
-        $arguments['params']['force'] = true;
-    }
-}
-
-if (empty($arguments['params']['table'])) {
-    die('提示：没有设置数据表参数');
 }
 
 try {

@@ -1,7 +1,7 @@
 <?php
 
 use App\Common\CodeMsg;
-use Luyuanxun\Micro\Tools\CustomException;
+use Lyx\Micro\Tools\CustomException;
 use Phalcon\Crypt;
 
 if (!function_exists('error_exit')) {

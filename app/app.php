@@ -38,3 +38,16 @@ $user->put("/", "update");
 $user->get("/", "getInfo");
 $user->get("/list", "getList");
 $app->mount($user);
+
+/**
+ * NewsController
+ */
+$news = new MicroCollection();
+$news->setHandler(new App\Controllers\NewsController());
+$news->setPrefix("/news");
+$news->post("/", "create");
+$news->delete("/", "delete");
+$news->put("/", "update");
+$news->get("/", "getInfo");
+$news->get("/list", "getList");
+$app->mount($news);
