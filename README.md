@@ -1,7 +1,7 @@
 # micro 介绍
-本项目是基于当前最新的phalcon3.4.3微型应用，phalcon是基于C扩展的高性能框架。
-项目根据phalcon micro搭建的restful api完整架子，亮点如下：
-* 提供scaffold脚手架，根据表可一键生成restful的crud
+本项目是基于当前最新的phalcon3.4.3微型应用，phalcon是基于C扩展的高性能框架，phalcon自带mvc结构，所以此项目只有300kb多，代码少易部署，非常轻量。
+完全restful风格，亮点如下：
+* 提供scaffold脚手架，一键生成增删改查api接口
 * restful ，基于php-jwt的api授权
 * 提供cli控制台，可结合cli使用swoole异步通信引擎...
 * 封装参数验证器，使用更方便更简单
