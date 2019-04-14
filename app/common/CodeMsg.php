@@ -29,10 +29,10 @@ class CodeMsg
 
     /**
      * 根据code获取信息
-     * @param $code
-     * @return mixed|string
+     * @param int $code
+     * @return string
      */
-    public static function get($code)
+    public static function get(int $code)
     {
         $all = self::getAll();
         return $all[$code] ?? '';

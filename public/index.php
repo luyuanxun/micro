@@ -128,11 +128,11 @@ try {
     if ($e instanceof CustomException) {
         $code = $e->getCode();
     }
-    else{
-        //调试时，查看非自定义错误信息
+    /*else{
+        //调试时，查看非自定义的完整错误信息
         var_dump($e->getMessage(), $e->getTraceAsString());
         exit();
-    }
+    }*/
 
     handleResult($code, $e->getMessage());
 }

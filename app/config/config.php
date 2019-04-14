@@ -59,6 +59,6 @@ return new Phalcon\Config([
      */
     'jwt' => [
         'key' => 'OAVmCOfnAls9NPkD',//请自行修改
-        'expire' => 72000,//有效期两小时
+        'expire' => 7200,//有效期两小时
     ],
 ]);

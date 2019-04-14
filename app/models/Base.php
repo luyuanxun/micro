@@ -13,9 +13,19 @@ use Phalcon\Mvc\Model;
  */
 abstract class Base extends Model
 {
-    abstract function getCount($params);
+    /**
+     * 统计总数
+     * @param array $params
+     * @return array
+     */
+    abstract function getCount(array $params);
 
-    abstract function getAll($params);
+    /**
+     * 获取所有数据
+     * @param array $params
+     * @return array
+     */
+    abstract function getAll(array $params);
 
     /**
      * 读写分离
@@ -29,12 +39,12 @@ abstract class Base extends Model
 
     /**
      * 获取列表
-     * @param $page
-     * @param $pageSize
+     * @param int $page
+     * @param int $pageSize
      * @param array $params
      * @return array
      */
-    public function getList($page, $pageSize, $params = [])
+    public function getList(int $page, int $pageSize, array $params = [])
     {
         $pageCount = $this->getCount($params);
         $params = array_merge($params, [

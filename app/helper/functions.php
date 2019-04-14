@@ -7,11 +7,11 @@ use Phalcon\Crypt;
 if (!function_exists('error_exit')) {
     /**
      * 错误退出
-     * @param $code
-     * @param $msg
+     * @param int $code
+     * @param string|array $msg
      * @throws CustomException
      */
-    function error_exit($code, $msg = '')
+    function error_exit(int $code, $msg = '')
     {
         if (is_array($msg)) {
             $message = CodeMsg::get($code);
@@ -30,11 +30,11 @@ if (!function_exists('error_exit')) {
 if (!function_exists('handleResult')) {
     /**
      * 结果统计返回
-     * @param $code
-     * @param $msg
+     * @param int $code
+     * @param string $msg
      * @param array $data
      */
-    function handleResult($code, $msg, $data = [])
+    function handleResult(int $code, string $msg, array $data = [])
     {
         $response = new Phalcon\Http\Response();
         $response->setStatusCode(substr($code, 0, 3))->setContentType('text/json')->sendHeaders();
@@ -66,7 +66,7 @@ if (!function_exists('handleCrypt')) {
                 handleCryptBase64($crypt, $v, $whiteList);
             } else {
                 if (in_array($k, $whiteList)) {
-                    $v = urlencode($crypt->encryptBase64(strval($v)));
+                    $v = $crypt->encryptBase64(strval($v));
                 }
             }
         }

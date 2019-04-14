@@ -15,9 +15,9 @@ class TimerTask extends Task
 {
     /**
      * 设置一个间隔时钟定时器
-     * @param $params
+     * @param array $params
      */
-    public function tickAction($params = [])
+    public function tickAction(array $params = [])
     {
         //打印参数
         //var_dump($params);

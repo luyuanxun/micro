@@ -1,0 +1,258 @@
+{
+	"info": {
+		"_postman_id": "6543d971-f218-434c-9031-9b12ea682f9b",
+		"name": "micro",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "获取token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/auth/token",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"auth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "根据token获取用户信息",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/auth/info",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"auth",
+						"info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取新闻列表",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/news/list?page=1&pageSize=10",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"news",
+						"list"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "pageSize",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "新增新闻",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "title1",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "content6666",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/news",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"news"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "修改新闻",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "Ac3OmmICGj5BBhtWZnrQa8c%3D",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "content22222",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "新标题",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/news",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"news"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取详情",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/news?id=Ac3OmmICGj5BBhtWZnrQa8c%3D",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"news"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "Ac3OmmICGj5BBhtWZnrQa8c%3D"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "删除新闻",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/news?id=1IqS2R6xMfKQhZKY+/xDqcs=",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"news"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1IqS2R6xMfKQhZKY+/xDqcs="
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
