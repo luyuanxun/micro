@@ -75,7 +75,7 @@ CURD完成！！！
 ```
 
 # cli控制台
-除了代码生成器脚手架scaffold，还可以自定义命令，可参考app/tasks/TimerTask.php
+根据自带代码生成器脚手架scaffold，参考模板，做自己风格的代码生成器，还可以自定义命令，可参考app/tasks/TimerTask.php
 ```
 $ php run timer tick
 每秒执行一次,10秒后停止！
