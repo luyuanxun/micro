@@ -4,6 +4,7 @@
 * 提供scaffold脚手架，一键生成增删改查api接口
 * restful ，基于php-jwt的api授权
 * 提供cli控制台，可结合cli使用swoole异步通信引擎...
+* mysql读写分离
 * 封装参数验证器，使用更方便更简单
 
 
