@@ -59,7 +59,11 @@ foreach ($argv as $k => $arg) {
     } elseif ($k === 2) {
         $arguments['action'] = $arg;
     } elseif ($k >= 3) {
-        $arguments['params'][] = $arg;
+        if (preg_match('/^--([^=]+)=(.*)/',$arg,$reg)) {
+            $arguments['params'][$reg[1]] = $reg[2];
+        } elseif(preg_match('/^-([a-zA-Z0-9])/',$arg,$reg)) {
+            $arguments['params'][$reg[1]] = 'true';
+        }
     }
 }
 
