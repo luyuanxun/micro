@@ -2,7 +2,7 @@
   "require": {
     "php": ">=7.1.3",
     "lyx/micro-tools": "1.0.0",
-    "lyx/micro-tasks": "1.0.0"
+    "lyx/micro-tasks": "1.1.0"
   },
   "autoload": {
     "files": [
