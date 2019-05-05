@@ -13,7 +13,9 @@ use Phalcon\Mvc\Micro\Collection as MicroCollection;
  * Not found handler
  */
 $app->notFound(function () use ($app) {
-    error_exit(Code::NOT_FOUND);
+    if ($app->request->getMethod() !== 'OPTIONS') {
+        error_exit(Code::NOT_FOUND);
+    }
 });
 
 /**

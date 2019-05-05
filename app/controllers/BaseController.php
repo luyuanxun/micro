@@ -14,7 +14,7 @@ class BaseController extends Controller
         $params = $this->request->get();
         $json = $this->request->getJsonRawBody(true);
         if ($json) {
-            array_merge($params, $json);
+            $params = array_merge($params, $json);
         } elseif ($this->request->isPost()) {
             $params = array_merge($params, $this->request->getPost());
         } elseif ($this->request->isPatch() || $this->request->isPut()) {

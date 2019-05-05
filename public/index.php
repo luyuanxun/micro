@@ -12,6 +12,13 @@ use Phalcon\Mvc\Router;
 //TODO 关闭
 error_reporting(E_ALL);
 
+/**
+ * TODO 删除 允许跨域，仅为开发
+ */
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization");
+header('Access-Control-Allow-Methods: GET, POST, PUT,DELETE,OPTIONS,PATCH');
+
 date_default_timezone_set('Asia/Shanghai');
 define('BASE_PATH', dirname(__DIR__));
 define('APP_PATH', BASE_PATH . '/app');
