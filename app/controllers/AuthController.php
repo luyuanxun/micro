@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Common\Code;
+use App\Models\Admin;
+use App\Services\AdminService;
 use Lyx\Micro\Tools\Authorization;
 use Lyx\Micro\Tools\CustomValidation;
 use Lyx\Micro\Tools\CustomException;
@@ -17,23 +19,19 @@ class AuthController extends BaseController
     public function getToken()
     {
         $rules = [
-            'name' => 'required|alphaNum',
-            'password' => 'required|alphaNum|strLen:6,32'
+            'name' => 'required',
+            'password' => 'required|strLen:6,32'
         ];
 
         $params = CustomValidation::validate($this->getParams(), $rules);
-
-        /**
-         * TODO 根据个人情况处理登录
-         */
-        $password = $this->security->hash("123456");
-        if (!($params['name'] === 'test' && $this->security->checkHash($params['password'], $password))) {
+        $admin = Admin::findFirstByName($params['name']);
+        if (!($admin && $this->security->checkHash($params['password'], $admin->password))) {
             $this->security->hash(rand());
             error_exit(Code::LOGIN_ERROR);
         }
 
-        $userId = 100;
-        return Authorization::createToken($userId);
+        $ret = Authorization::createToken($admin->id);
+        return $ret;
     }
 
     /**
@@ -54,7 +52,10 @@ class AuthController extends BaseController
      */
     public function getInfo()
     {
-        return Authorization::analyzeToken();
+        $jwt = Authorization::analyzeToken();
+        $id = $jwt['id'];
+        $admin = new AdminService();
+        return $admin->getInfo(compact('id'));
     }
 }
 

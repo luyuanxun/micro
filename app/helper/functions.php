@@ -37,7 +37,7 @@ if (!function_exists('handleResult')) {
     function handleResult(int $code, string $msg, array $data = [])
     {
         $response = new Phalcon\Http\Response();
-        $response->setStatusCode(substr($code, 0, 3))->setContentType('text/json')->sendHeaders();
+        $response->setContentType('text/json')->sendHeaders();
         echo json_encode(compact('code', 'msg', 'data'));
         exit();
     }
