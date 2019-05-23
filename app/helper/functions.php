@@ -65,7 +65,7 @@ if (!function_exists('handleCrypt')) {
             if (is_array($v) && !empty($v)) {
                 handleCryptBase64($crypt, $v, $whiteList);
             } else {
-                if (in_array($k, $whiteList)) {
+                if (is_string($k) && in_array($k, $whiteList)) {
                     $v = $crypt->encryptBase64(strval($v));
                 }
             }
